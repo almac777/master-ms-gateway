@@ -1,0 +1,26 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:
+        http://localhost:8761/eureka/
+
+user-service:
+  ribbon:
+    listOfServers: http://localhost:8081
+article-service:
+  ribbon:
+    listOfServers: http://localhost:8082
+rating-service:
+  ribbon:
+    listOfServers: http://localhost:8083
+accumulated-rating-service:
+  ribbon:
+    listOfServers: http://localhost:8084
+
+auth:
+  verifierKey:
+    # keytool -list -rfc --keystore development.jks | openssl x509 -inform pem -pubkey
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkLwypmm3bsUYl83kAlZR8c/91d1ojDITy6w3PS8IoLMBpTpY9YVl3tcGuJkH1leGJAxNtHkWcn0MDcR9jL2b3cj+tfNfaUmV8P4ZMItk0TKjuN8zSq2nEiyv0wsXMsQ9veyazFpm+xh7htXlN9+aDWncrA3zC4C44ZM3VDHmj7UfETCgzZQPq82seEpwS63xZb7tZwwVQdifPhV+LzrZvUGl0WTZEYOolKPJfJGT6k8WEuYvH6RGZwzgsIaqXBtDqi7ipDoLQyKx/LY5iRSUdg9LpRm08tiBm+RdEi3HBAll0fRf/lPQSLX/olqeHWbLqsyiIvyw2Cn9JDqQ9G5JJQIDAQAB
+  http-basic-password:
+    # oauth2-client:oauth2-password
+    b2F1dGgyLWNsaWVudDpvYXV0aDItcGFzc3dvcmQ=
