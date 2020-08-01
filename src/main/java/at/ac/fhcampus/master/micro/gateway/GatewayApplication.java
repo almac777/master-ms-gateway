@@ -24,15 +24,10 @@ public class GatewayApplication {
 
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-        log.info(this.httpBasicPassword);
         return builder.routes()
                 .route("users", r -> r.path("/api/v1/users/**")
-                        .filters(f -> f.
-                                addRequestHeader(HttpHeaders.AUTHORIZATION, "Basic " + this.httpBasicPassword)
-                                .stripPrefix(3)
-                        )
-                        .uri("lb://user-service/")
-                )
+                        .filters(f -> f.addRequestHeader(HttpHeaders.AUTHORIZATION, "Basic " + this.httpBasicPassword).stripPrefix(3))
+                        .uri("lb://user-service/"))
                 .route("articles", r -> r.path("/api/v1/articles/**")
                         .filters(f -> f.stripPrefix(3))
                         .uri("lb://article-service/"))

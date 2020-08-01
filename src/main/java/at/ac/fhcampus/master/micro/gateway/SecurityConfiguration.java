@@ -52,7 +52,10 @@ public class SecurityConfiguration {
      * We have to create the jwt decoder ourselves to provide the RSA Key for signature validation.
      * Spring Boot 2/Cloud Gateway supports obtaining the key via an endpoint, HOWEVER the web client
      * used to obtain the keys is not configurable and fixed to default implementation, meaning it does not
-     * support service discovery. This means that we'd have to fixate the URL to obtain the keys.
+     * support service discovery.
+     *
+     * This means that we'd have to fixate the URL to obtain the keys.
+     *
      * If this bean is not defined, the property "spring.oauth2resourceserver.jwt.jwk-set-uri" can be used to have
      * the decoder automatically defined.
      * <br>
@@ -65,7 +68,6 @@ public class SecurityConfiguration {
         X509EncodedKeySpec spec = new X509EncodedKeySpec(decodedKey);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         RSAPublicKey rsaPublicKey = (RSAPublicKey) keyFactory.generatePublic(spec);
-
         return new NimbusReactiveJwtDecoder(rsaPublicKey);
     }
 }
